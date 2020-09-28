@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Tubes_UTS</string>
+
+    //splashscreen
+    <string name="namaRestaurant">Restaurant</string>
+    <string name="slogan">Hungry? Just Order It!</string>
 </resources>
