@@ -21,6 +21,7 @@ Button btnLempar;
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,SplashScreen.class);
                 startActivity(intent);
+
             }
         });
     }
