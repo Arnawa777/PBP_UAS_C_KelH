@@ -4,14 +4,16 @@
     //splashscreen
     <string name="namaRestaurant">Restaurant</string>
     <string name="slogan">Hungry? Just Order It!</string>
-    //menu
-    <string name="krustykrab">Krusty Crab</string>
+
     <string name="menu">Menu</string>
+    <string name="bestdeal">Best Deal</string>
+    <string name="desert">Desert</string>
+    <string name="location">Location</string>
+    <string name="recommend">Recommendation</string>
+
+    //Menu
     <string name="home">Home</string>
     <string name="cart">Cart</string>
-    <string name="reservation">Reservation</string>
-    <string name="gallery">Gallery</string>
-    <string name="social">Social</string>
-    <string name="news">News</string>
-    <string name="location">Location</string>
+    <string name="account">Account</string>
+    <string name="settings">Settings</string>
 </resources>
