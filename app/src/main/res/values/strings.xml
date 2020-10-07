@@ -18,9 +18,16 @@
     <string name="settings">Settings</string>
 
     //Login Register
-    <string name="inp_email">Input Email</string>
-    <string name="inp_password">Input Password</string>
+    <string name="inp_email">Email</string>
+    <string name="inp_password">Password</string>
     <string name="remember_me">Remember Me</string>
     <string name="forget_password">FORGET PASSWORD</string>
     <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+    <string name="inp_name">Your Name</string>
+    <string name="inp_number">Phone Number</string>
+    <string name="choose_gender">Choose Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="already">Already Have an Account?</string>
 </resources>

@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="LOGIN"
+            android:text="@string/login"
             android:textAllCaps="true"
             android:textColor="@color/colorBlack"
             android:textSize="40sp"
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="80dp">
+            android:layout_marginTop="50dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

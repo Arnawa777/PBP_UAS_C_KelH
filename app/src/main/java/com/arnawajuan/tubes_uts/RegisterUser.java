@@ -21,7 +21,7 @@ public class RegisterUser extends AppCompatActivity {
 
     TextView btn;
 
-    private EditText inputEmail, inputPass, inputConfirmPass;
+    private EditText inputEmail, inputPass, inputNumber;
     Button btnRegister;
     private FirebaseAuth mAuth;
     private ProgressDialog mLoadingBar;
@@ -33,7 +33,7 @@ public class RegisterUser extends AppCompatActivity {
 
         inputEmail = findViewById(R.id.inputEmail);
         inputPass = findViewById(R.id.inputPassword);
-        inputConfirmPass = findViewById(R.id.inputConfirmPassword);
+        inputNumber = findViewById(R.id.inputNumber);
         mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(RegisterUser.this);
         btn = findViewById(R.id.signIn);
@@ -60,14 +60,13 @@ public class RegisterUser extends AppCompatActivity {
     private void checkCredentials() {
         String email = inputEmail.getText().toString();
         String pass = inputPass.getText().toString();
-        String confirmPass = inputConfirmPass.getText().toString();
 
         if (email.isEmpty() || !email.contains("@")) {
             showError(inputEmail, "Email is not valid");
         } else if (pass.isEmpty() || pass.length() < 6) {
             showError(inputPass, "Password must be 6 character");
-        } else if (confirmPass.isEmpty() || !confirmPass.equals(pass)) {
-            showError(inputConfirmPass, "Password not match");
+        //}else if (confirmPass.isEmpty() || !confirmPass.equals(pass)) {
+            //showError(inputConfirmPass, "Password not match");
         } else {
             mLoadingBar.setTitle("Registration");
             mLoadingBar.setMessage("Please wait, while check");
