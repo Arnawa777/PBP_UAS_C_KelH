@@ -8,5 +8,6 @@
     <color name="colorGreen">#32CD32</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorHome">#EBEBEB</color>
+    <color name="colorWelcome">#FCF201</color>
 
 </resources>

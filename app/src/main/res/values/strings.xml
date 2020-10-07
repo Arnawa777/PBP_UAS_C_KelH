@@ -16,4 +16,11 @@
     <string name="cart">Cart</string>
     <string name="account">Account</string>
     <string name="settings">Settings</string>
+
+    //Login Register
+    <string name="inp_email">Input Email</string>
+    <string name="inp_password">Input Password</string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forget_password">FORGET PASSWORD</string>
+    <string name="login">LOGIN</string>
 </resources>
