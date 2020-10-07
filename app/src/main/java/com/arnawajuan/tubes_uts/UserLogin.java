@@ -106,6 +106,8 @@ public class UserLogin extends AppCompatActivity {
             });
         }
     }
+
+    //Notifikasi
     private void createNotificationChannel() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

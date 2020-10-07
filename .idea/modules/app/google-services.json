@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "546743402585",
+    "firebase_url": "https://tubespbp-922aa.firebaseio.com",
+    "project_id": "tubespbp-922aa",
+    "storage_bucket": "tubespbp-922aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546743402585:android:0d93a3b1fb27fb3aa63148",
+        "android_client_info": {
+          "package_name": "com.arnawajuan.tubes_uts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546743402585-iqo6e2t44kve1vq17jqvidnnqarbhhog.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.arnawajuan.tubes_uts",
+            "certificate_hash": "3721bdcb97fb4a8f6922a896087d540e871bef0b"
+          }
+        },
+        {
+          "client_id": "546743402585-6sg990k0ulcunnoc2nisdo0h3la4q2uq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwxcwNr40MdQmDMgJ4cWnHztbuvN0FVGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546743402585-6sg990k0ulcunnoc2nisdo0h3la4q2uq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

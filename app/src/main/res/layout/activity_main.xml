@@ -108,7 +108,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:padding="8dp"
-                    android:src="@drawable/food_icon"
+                    android:src="@drawable/best_deal"
                     />
 
                 <TextView
@@ -141,14 +141,14 @@
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:padding="8dp"
-                    android:src="@drawable/food_icon"
+                    android:src="@drawable/dessert"
                     />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/desert"
+                    android:text="@string/dessert"
                     android:textColor="@color/colorBlack"
                     android:textSize="20dp"
                     android:textStyle="bold" />
@@ -173,7 +173,7 @@
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:padding="8dp"
-                    android:src="@drawable/food_icon"
+                    android:src="@drawable/location_black"
                     />
 
                 <TextView
