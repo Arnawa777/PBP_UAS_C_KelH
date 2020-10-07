@@ -6,10 +6,13 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +33,7 @@ public class UserLogin extends AppCompatActivity {
 
     private EditText inputEmail, inputPass;
     Button loginBtn;
+    CheckBox remember;
     private FirebaseAuth mAuth;
     private ProgressDialog mLoadingBar;
 
@@ -38,12 +42,22 @@ public class UserLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_user);
 
-        inputEmail= findViewById(R.id.inputEmail);
-        inputPass= findViewById(R.id.inputPassword);
-        mAuth= FirebaseAuth.getInstance();
-        mLoadingBar= new ProgressDialog(UserLogin.this);
+        inputEmail = findViewById(R.id.inputEmail);
+        inputPass = findViewById(R.id.inputPassword);
+        remember = findViewById(R.id.rememberMe);
+        mAuth = FirebaseAuth.getInstance();
+        mLoadingBar = new ProgressDialog(UserLogin.this);
         btnSignUp = findViewById(R.id.signUp);
-        loginBtn=findViewById(R.id.btnLogin);
+        loginBtn = findViewById(R.id.btnLogin);
+
+        SharedPreferences preferences = getSharedPreferences("checkbox",MODE_PRIVATE);
+        String checkbox = preferences.getString("remember","");
+        if(checkbox.equals("true")){
+            Intent intent = new Intent(UserLogin.this,MainActivity.class);
+            startActivity(intent);
+        }else if(checkbox.equals("false")){
+            Toast.makeText(this,"Please Sign In",Toast.LENGTH_SHORT).show();
+        }
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,35 +74,48 @@ public class UserLogin extends AppCompatActivity {
             }
         });
 
+remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        if (compoundButton.isChecked()) {
+            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("remember", "true");
+            editor.apply();
+            Toast.makeText(UserLogin.this, "Checked", Toast.LENGTH_SHORT).show();
+        } else if (!compoundButton.isChecked()) {
+            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("remember", "false");
+            editor.apply();
+            Toast.makeText(UserLogin.this, "Unhecked", Toast.LENGTH_SHORT).show();
+        }
+    }
+});
 
     }
 
+
+
+
     private void checkCredentials() {
-        String email=inputEmail.getText().toString();
-        String pass=inputPass.getText().toString();
+        String email = inputEmail.getText().toString();
+        String pass = inputPass.getText().toString();
 
-        if (email.isEmpty() || !email.contains("@"))
-        {
-            Toast.makeText(UserLogin.this,"Email invalid",Toast.LENGTH_SHORT).show();
-        }
-
-        else if (pass.isEmpty() || pass.length()<6)
-        {
-            Toast.makeText(UserLogin.this,"Password must be 6 character",Toast.LENGTH_SHORT).show();
-        }
-
-        else
-        {
+        if (email.isEmpty() || !email.contains("@")) {
+            Toast.makeText(UserLogin.this, "Email invalid", Toast.LENGTH_SHORT).show();
+        } else if (pass.isEmpty() || pass.length() < 6) {
+            Toast.makeText(UserLogin.this, "Password must be 6 character", Toast.LENGTH_SHORT).show();
+        } else {
             mLoadingBar.setTitle("Login");
             mLoadingBar.setMessage("Please Wait");
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
 
-            mAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful())
-                    {
+                    if (task.isSuccessful()) {
                         Toast.makeText(UserLogin.this, "Login Successfull", Toast.LENGTH_SHORT).show();
                         mLoadingBar.dismiss();
                         Intent intent = new Intent(UserLogin.this, MainActivity.class);
@@ -96,9 +123,7 @@ public class UserLogin extends AppCompatActivity {
                         createNotificationChannel();
                         addNotification();
                         startActivity(intent);
-                    }
-                    else
-                    {
+                    } else {
                         Toast.makeText(UserLogin.this, "Email or Password not Valid", Toast.LENGTH_LONG).show();
                         mLoadingBar.dismiss();
                     }
@@ -138,3 +163,5 @@ public class UserLogin extends AppCompatActivity {
         manager.notify(0, builder.build());
     }
 }
+
+
