@@ -3,9 +3,12 @@ package com.arnawajuan.tubes_uts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,10 +22,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterUser extends AppCompatActivity {
 
-    TextView btn;
+    TextView btnSignIn;
 
     private EditText inputEmail, inputPass, inputNumber;
-    Button btnRegister;
+    Button btnNext, btnRegister;
     private FirebaseAuth mAuth;
     private ProgressDialog mLoadingBar;
 
@@ -31,42 +34,59 @@ public class RegisterUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
+
+        btnNext = findViewById(R.id.nextRegister);
+        btnSignIn = findViewById(R.id.signIn);
+
         inputEmail = findViewById(R.id.inputEmail);
         inputPass = findViewById(R.id.inputPassword);
         inputNumber = findViewById(R.id.inputNumber);
         mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(RegisterUser.this);
-        btn = findViewById(R.id.signIn);
-        btnRegister = findViewById(R.id.btnRegister);
+      //  btnRegister = findViewById(R.id.btnRegister);
 
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(RegisterUser.this, UserLogin.class));
-            }
-        });
-
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkCredentials();
-            }
-        });
 
 
     }
 
+    public void callNextRegister(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), RegisterUserSecond.class);
+
+        //Transisition
+        Pair[] pairs = new Pair[2];
+
+        pairs[0] = new Pair<View, String>(btnNext, "transition_next");
+        pairs[1] = new Pair<View, String>(btnSignIn, "transition_sign_in");
+
+        //call activity
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegisterUser.this, pairs);
+            startActivity(intent, options.toBundle());
+        } else {
+            startActivity(intent);
+        }
+    }
+
+    public void callLoginFromSignUp(View view) {
+        startActivity(new Intent(getApplicationContext(), UserLogin.class));
+        finish();
+    }
+
+
     private void checkCredentials() {
         String email = inputEmail.getText().toString();
         String pass = inputPass.getText().toString();
+        String number = inputNumber.getText().toString();
+        String checkspaces = "Aw{1,20}z";
 
         if (email.isEmpty() || !email.contains("@")) {
             showError(inputEmail, "Email is not valid");
         } else if (pass.isEmpty() || pass.length() < 6) {
             showError(inputPass, "Password must be 6 character");
-        //}else if (confirmPass.isEmpty() || !confirmPass.equals(pass)) {
-            //showError(inputConfirmPass, "Password not match");
+        } else if (number.isEmpty() || !number.matches(checkspaces)) {
+            showError(inputNumber, "Number not Allowed");
         } else {
             mLoadingBar.setTitle("Registration");
             mLoadingBar.setMessage("Please wait, while check");

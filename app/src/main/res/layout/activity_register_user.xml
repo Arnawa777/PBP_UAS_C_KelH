@@ -125,13 +125,15 @@
 
 
             <Button
-                android:id="@+id/btnRegister"
+                android:id="@+id/nextRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@color/colorBlack"
-                android:text="@string/register"
-                android:textColor="@color/colorWhite" />
+                android:onClick="callNextRegister"
+                android:text="@string/next"
+                android:textColor="@color/colorWhite"
+                android:transitionName="transition_next"/>
 
             <Button
                 android:id="@+id/signIn"
@@ -139,8 +141,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:onClick="callLoginFromSignUp"
                 android:background="#0000"
-                android:text="@string/already" />
+                android:text="@string/already"
+                android:transitionName="transition_sign_in"/>
 
 
         </LinearLayout>

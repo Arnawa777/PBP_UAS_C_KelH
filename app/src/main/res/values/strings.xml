@@ -29,5 +29,6 @@
     <string name="choose_gender">Choose Gender</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="next">NEXT</string>
     <string name="already">Already Have an Account?</string>
 </resources>
