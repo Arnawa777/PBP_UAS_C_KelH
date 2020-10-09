@@ -11,7 +11,7 @@
             android:id="@+id/btn_capture_photo"
             android:layout_width="425dp"
             android:layout_height="189dp"
-            android:src="@drawable/kotak"
+            android:src="@drawable/shape_kotak"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
