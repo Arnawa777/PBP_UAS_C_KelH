@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,7 @@ TextView text;
 BottomNavigationView bottomNavigationView;
 View view;
 
+LinearLayout logout;
 
 
     @Override
@@ -30,7 +32,6 @@ View view;
         setContentView(R.layout.activity_main);
 
         menumak = findViewById(R.id.cardMenu);
-
         text = findViewById(R.id.textRecommend);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         view = findViewById(R.id.viewDivider);
@@ -43,10 +44,28 @@ View view;
 
             }
         });
+        logout = findViewById(R.id.cardLogout);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("remember", "false");
+                editor.apply();
+
+                finish();
+            }
+        });
 
     }
     public void openMenuMakanan(){
         Intent intent = new Intent(this,MenuMakanan.class);
         startActivity(intent);
+    }
+    public void callLoginFromLogout(View view) {
+        startActivity(new Intent(getApplicationContext(), UserLogin.class));
+        finish();
     }
 }
