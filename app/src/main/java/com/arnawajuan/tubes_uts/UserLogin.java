@@ -23,6 +23,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,7 +32,7 @@ public class UserLogin extends AppCompatActivity {
 
     TextView btnSignUp;
 
-    private EditText inputEmail, inputPass;
+    private TextInputEditText inputEmail, inputPass;
     Button loginBtn;
     CheckBox remember;
     private FirebaseAuth mAuth;
@@ -50,13 +51,13 @@ public class UserLogin extends AppCompatActivity {
         btnSignUp = findViewById(R.id.signUp);
         loginBtn = findViewById(R.id.btnLogin);
 
-        SharedPreferences preferences = getSharedPreferences("checkbox",MODE_PRIVATE);
-        String checkbox = preferences.getString("remember","");
-        if(checkbox.equals("true")){
-            Intent intent = new Intent(UserLogin.this,MainActivity.class);
+        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        String checkbox = preferences.getString("remember", "");
+        if (checkbox.equals("true")) {
+            Intent intent = new Intent(UserLogin.this, MainActivity.class);
             startActivity(intent);
-        }else if(checkbox.equals("false")){
-            Toast.makeText(this,"Please Sign In",Toast.LENGTH_SHORT).show();
+        } else if (checkbox.equals("false")) {
+            Toast.makeText(this, "Please Sign In", Toast.LENGTH_SHORT).show();
         }
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
@@ -74,28 +75,26 @@ public class UserLogin extends AppCompatActivity {
             }
         });
 
-remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-        if (compoundButton.isChecked()) {
-            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("remember", "true");
-            editor.apply();
-            Toast.makeText(UserLogin.this, "Checked", Toast.LENGTH_SHORT).show();
-        } else if (!compoundButton.isChecked()) {
-            SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("remember", "false");
-            editor.apply();
-            Toast.makeText(UserLogin.this, "Unhecked", Toast.LENGTH_SHORT).show();
-        }
-    }
-});
+        remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (compoundButton.isChecked()) {
+                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "true");
+                    editor.apply();
+                    Toast.makeText(UserLogin.this, "Checked", Toast.LENGTH_SHORT).show();
+                } else if (!compoundButton.isChecked()) {
+                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "false");
+                    editor.apply();
+                    Toast.makeText(UserLogin.this, "Unhecked", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
     }
-
-
 
 
     private void checkCredentials() {
@@ -103,9 +102,9 @@ remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         String pass = inputPass.getText().toString();
 
         if (email.isEmpty() || !email.contains("@")) {
-            Toast.makeText(UserLogin.this, "Email invalid", Toast.LENGTH_SHORT).show();
+            showError(inputEmail, "Email Invalid");
         } else if (pass.isEmpty() || pass.length() < 6) {
-            Toast.makeText(UserLogin.this, "Password must be 6 character", Toast.LENGTH_SHORT).show();
+            showError(inputPass, "Password must be 6 character");
         } else {
             mLoadingBar.setTitle("Login");
             mLoadingBar.setMessage("Please Wait");
@@ -130,6 +129,11 @@ remember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
                 }
             });
         }
+    }
+
+    private void showError(EditText input, String s) {
+        input.setError(s);
+        input.requestFocus();
     }
 
     //Notifikasi

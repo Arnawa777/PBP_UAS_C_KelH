@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -24,8 +25,8 @@ public class RegisterUser extends AppCompatActivity {
 
     TextView btnSignIn;
 
-    private EditText inputEmail, inputPass, inputNumber;
-    Button btnNext, btnRegister;
+    private TextInputEditText inputName, inputEmail, inputPass, inputNumber;
+    Button btnRegister;
     private FirebaseAuth mAuth;
     private ProgressDialog mLoadingBar;
 
@@ -36,56 +37,54 @@ public class RegisterUser extends AppCompatActivity {
 
 
         btnSignIn = findViewById(R.id.signIn);
+        btnRegister = findViewById(R.id.register);
 
+        //Input
+        inputName = findViewById(R.id.inputName);
         inputEmail = findViewById(R.id.inputEmail);
         inputPass = findViewById(R.id.inputPassword);
         inputNumber = findViewById(R.id.inputNumber);
+
+
+        //Firebase
         mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(RegisterUser.this);
-       btnRegister = findViewById(R.id.register);
 
 
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterUser.this, UserLogin.class));
+            }
+        });
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkCredentials();
+            }
+        });
 
 
-    }
-
-    public void callRegisterUser(View view) {
-
-        Intent intent = new Intent(getApplicationContext(), UserLogin.class);
-
-        //Transisition
-        Pair[] pairs = new Pair[2];
-
-        pairs[0] = new Pair<View, String>(btnRegister, "transition_next");
-        pairs[1] = new Pair<View, String>(btnSignIn, "transition_sign_in");
-
-        //call activity
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegisterUser.this, pairs);
-            startActivity(intent, options.toBundle());
-        } else {
-            startActivity(intent);
-        }
-    }
-
-    public void callLoginFromSignUp(View view) {
-        startActivity(new Intent(getApplicationContext(), UserLogin.class));
-        finish();
     }
 
 
     private void checkCredentials() {
+        String name = inputName.getText().toString();
         String email = inputEmail.getText().toString();
-        String pass = inputPass.getText().toString();
         String number = inputNumber.getText().toString();
-        String checkspaces = "Aw{1,20}z";
+        String pass = inputPass.getText().toString();
+        String checkName = "\\A\\w{3,20}\\z";
+        String checkNumber = "\\A\\w{10,13}\\z";
 
-        if (email.isEmpty() || !email.contains("@")) {
+        if (name.isEmpty() || !name.matches(checkName)) {
+            showError(inputName, "Name must 3-20 character");
+        } else if (email.isEmpty() || !email.contains("@")) {
             showError(inputEmail, "Email is not valid");
-        } else if (pass.isEmpty() || pass.length() < 6) {
+        } else if (number.isEmpty() || !number.matches(checkNumber)) {
+            showError(inputNumber, "Must have 10-13 digit");
+        } else if (pass.isEmpty() || pass.length() > 6) {
             showError(inputPass, "Password must be 6 character");
-        } else if (number.isEmpty() || !number.matches(checkspaces)) {
-            showError(inputNumber, "Number not Allowed");
         } else {
             mLoadingBar.setTitle("Registration");
             mLoadingBar.setMessage("Please wait, while check");
