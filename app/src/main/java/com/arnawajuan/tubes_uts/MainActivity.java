@@ -18,12 +18,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-LinearLayout menumak;
-TextView text;
-BottomNavigationView bottomNavigationView;
-View view;
+    LinearLayout menumak;
+    TextView text;
+    BottomNavigationView bottomNavigationView;
+    View view;
 
-LinearLayout logout;
+    LinearLayout logout;
 
 
     @Override
@@ -40,7 +40,7 @@ LinearLayout logout;
         menumak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               openMenuMakanan();
+                openMenuMakanan();
 
             }
         });
@@ -56,16 +56,15 @@ LinearLayout logout;
                 editor.apply();
 
                 finish();
+                startActivity(new Intent(getApplicationContext(), UserLogin.class));
+                finish();
             }
         });
 
     }
-    public void openMenuMakanan(){
-        Intent intent = new Intent(this,MenuMakanan.class);
+
+    public void openMenuMakanan() {
+        Intent intent = new Intent(this, MenuMakanan.class);
         startActivity(intent);
-    }
-    public void callLoginFromLogout(View view) {
-        startActivity(new Intent(getApplicationContext(), UserLogin.class));
-        finish();
     }
 }

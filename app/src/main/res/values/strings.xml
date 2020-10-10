@@ -31,4 +31,5 @@
     <string name="female">Female</string>
     <string name="next">NEXT</string>
     <string name="already">Already Have an Account?</string>
+    <string name="cam">Camera</string>
 </resources>
