@@ -19,7 +19,7 @@ public class MenuMakanan extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_menu_makanan);
 
         //get data mahasiswa
         ListMakanan = new DaftarMakanan().MAKANAN;

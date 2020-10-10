@@ -55,28 +55,27 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            
+
             <LinearLayout
                 android:id="@+id/cardMenu"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="22dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/white_rectangle_back"
                 android:gravity="center"
-                android:layout_marginLeft="15dp"
-                android:padding="15dp"
                 android:orientation="vertical"
+                android:padding="15dp"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-                
+
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_margin="10dp"
                     android:padding="8dp"
-                    android:src="@drawable/food_icon"
-                    />
+                    android:src="@drawable/food_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -85,7 +84,8 @@
                     android:text="@string/menu"
                     android:textColor="@color/colorBlack"
                     android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    />
 
             </LinearLayout>
 
@@ -229,7 +229,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/navigation_menu"/>
 
-    <view
+    <View
         android:id="@+id/viewDivider"
         android:layout_width="match_parent"
         android:layout_height="1dp"

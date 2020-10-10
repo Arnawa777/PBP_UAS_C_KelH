@@ -2,12 +2,26 @@ package com.arnawajuan.tubes_uts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+import com.arnawajuan.tubes_uts.makanan.MenuMakanan;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
+
+LinearLayout menumak;
+TextView text;
+BottomNavigationView bottomNavigationView;
+View view;
+
 
 
     @Override
@@ -15,7 +29,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        menumak = findViewById(R.id.cardMenu);
+
+        text = findViewById(R.id.textRecommend);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        view = findViewById(R.id.viewDivider);
 
 
+        menumak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               openMenuMakanan();
+
+            }
+        });
+
+    }
+    public void openMenuMakanan(){
+        Intent intent = new Intent(this,MenuMakanan.class);
+        startActivity(intent);
     }
 }
