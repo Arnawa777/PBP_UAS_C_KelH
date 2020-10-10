@@ -10,11 +10,7 @@
         android:id="@+id/menuCart"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="@string/cart"/>
-
-    <item
-        android:id="@+id/menuCam"
-        android:icon="@drawable/ic_baseline_photo_camera_24"
-        android:title="@string/cam"/>
+    
 
     <item
         android:id="@+id/menuAccount"
