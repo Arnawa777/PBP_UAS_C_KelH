@@ -31,11 +31,11 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
-            android:text="FoodMenu"
+            android:layout_marginTop="72dp"
+            android:text="Menu"
             android:textSize="40dp"
             app:layout_constraintEnd_toEndOf="@+id/btn_capture_photo"
-            app:layout_constraintHorizontal_bias="0.544"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="@+id/btn_capture_photo"
             app:layout_constraintTop_toTopOf="@+id/btn_capture_photo" />
 

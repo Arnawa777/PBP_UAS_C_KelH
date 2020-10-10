@@ -6,11 +6,11 @@ import androidx.databinding.BindingAdapter;
 
 public class Makanan {
     public String nama;
-    public double harga;
+    public int harga;
     public String deskripsi;
     public int gambar;
 
-    public Makanan(String nama, double harga,String deskripsi,int gambar) {
+    public Makanan(String nama, int harga,String deskripsi,int gambar) {
         this.nama = nama;
         this.harga = harga;
         this.deskripsi=deskripsi;
@@ -30,11 +30,11 @@ public class Makanan {
         this.nama = nama;
     }
 
-    public double getHarga() {
+    public int getHarga() {
         return harga;
     }
 
-    public void setHarga(double harga) {
+    public void setHarga(int harga) {
         this.harga = harga;
     }
     public String getStringharga() {return String.valueOf(harga);}
