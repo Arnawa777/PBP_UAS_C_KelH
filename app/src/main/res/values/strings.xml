@@ -17,6 +17,9 @@
     <string name="account">Account</string>
     <string name="settings">Settings</string>
 
+    //Token Geolocation
+    <string name="mapbox_access_token">pk.eyJ1Ijoia3Vyb2hha3UxMiIsImEiOiJja2ZrdHY5engxYzdsMnBtejFyN2sxb2xvIn0.EIkD9rXzlJM1KW2NYfMbtg</string>
+
     //Login Register
     <string name="inp_email">Email</string>
     <string name="inp_password">Password</string>

@@ -9,5 +9,7 @@
     <color name="colorPrimaryText">#212121</color>
     <color name="colorHome">#EBEBEB</color>
     <color name="colorWelcome">#FCF201</color>
+    <color name="grayLight">#c6d2e1</color>
+    <color name="Blue">#4264fb</color>
 
 </resources>
