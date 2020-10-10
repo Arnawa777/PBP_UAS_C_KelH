@@ -35,7 +35,6 @@ public class RegisterUser extends AppCompatActivity {
         setContentView(R.layout.activity_register_user);
 
 
-        btnNext = findViewById(R.id.nextRegister);
         btnSignIn = findViewById(R.id.signIn);
 
         inputEmail = findViewById(R.id.inputEmail);
@@ -43,21 +42,21 @@ public class RegisterUser extends AppCompatActivity {
         inputNumber = findViewById(R.id.inputNumber);
         mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(RegisterUser.this);
-      //  btnRegister = findViewById(R.id.btnRegister);
+       btnRegister = findViewById(R.id.register);
 
 
 
 
     }
 
-    public void callNextRegister(View view) {
+    public void callRegisterUser(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), RegisterUserSecond.class);
+        Intent intent = new Intent(getApplicationContext(), UserLogin.class);
 
         //Transisition
         Pair[] pairs = new Pair[2];
 
-        pairs[0] = new Pair<View, String>(btnNext, "transition_next");
+        pairs[0] = new Pair<View, String>(btnRegister, "transition_next");
         pairs[1] = new Pair<View, String>(btnSignIn, "transition_sign_in");
 
         //call activity

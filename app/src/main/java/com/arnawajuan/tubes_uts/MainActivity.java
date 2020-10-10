@@ -1,20 +1,28 @@
 package com.arnawajuan.tubes_uts;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.arnawajuan.tubes_uts.makanan.MenuMakanan;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,6 +78,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        if(Build.VERSION.SDK_INT >=Build.VERSION_CODES.O)
+
+        {
+            String CHANNEL_ID = "Channel 1";
+            CharSequence name = "Channel 1";
+            String description = "This is Channel 1";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+        FirebaseMessaging.getInstance().
+
+                subscribeToTopic("promo")
+                .
+
+                        addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete (@NonNull Task < Void > task) {
+                                String mag = "Successful";
+                                if (!task.isSuccessful()) {
+                                    mag = "failed";
+                                }
+                                Toast.makeText(MainActivity.this, mag, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
     }
 
     public void openMenuMakanan() {
@@ -86,4 +124,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), UserLogin.class));
         finish();
     }
+
+
+
 }
