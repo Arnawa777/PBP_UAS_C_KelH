@@ -47,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
         menumak = findViewById(R.id.cardMenu);
         geo = findViewById(R.id.cardLocation);
         text = findViewById(R.id.textRecommend);
-        bottomNavigationView = findViewById(R.id.bottomNavigation);
-        view = findViewById(R.id.viewDivider);
         dark = findViewById(R.id.cardDarkmode);
         menumak.setOnClickListener(new View.OnClickListener() {
             @Override
