@@ -29,6 +29,7 @@
         <activity android:name=".GeolocationActivity" />
         <activity android:name=".makanan.MenuMakanan" />
         <activity android:name=".SettingActivity" />
+        <activity android:name=".ReservationActivity"/>
 
         <service android:name=".MessagingService">
             <intent-filter>

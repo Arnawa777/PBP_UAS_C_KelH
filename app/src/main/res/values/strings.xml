@@ -6,7 +6,7 @@
     <string name="slogan">Hungry? Just Order It!</string>
 
     <string name="menu">Menu</string>
-    <string name="bestdeal">Best Deal</string>
+    <string name="reservation">Reservation</string>
     <string name="dessert">Dessert</string>
     <string name="location">Location</string>
     <string name="recommend">Recommendation</string>
@@ -36,4 +36,6 @@
     <string name="already">Already Have an Account?</string>
     <string name="cam">Camera</string>
     <string name="search_name">Search Name</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 </resources>

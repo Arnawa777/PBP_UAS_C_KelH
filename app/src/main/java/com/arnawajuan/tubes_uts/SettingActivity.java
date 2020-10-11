@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Switch;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ public class SettingActivity extends AppCompatActivity {
     private Switch switcher;
     ConstraintLayout Switchview;
     private SharePref sharePref;
+    ImageView backButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharePref =new SharePref(this);
@@ -26,6 +29,8 @@ public class SettingActivity extends AppCompatActivity {
 
         Switchview = findViewById(R.id.switchcard);
         switcher = findViewById(R.id.switcher);
+
+        backButton = findViewById(R.id.back_button);
 
         if(sharePref.loadDarkModeState()){
             switcher.setChecked(true);
@@ -43,6 +48,14 @@ public class SettingActivity extends AppCompatActivity {
                     sharePref.setDarkModeState(false);
                     restartApp();
                 }
+            }
+        });
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SettingActivity.this, MainActivity.class));
             }
         });
     }

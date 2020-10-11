@@ -2,7 +2,10 @@ package com.arnawajuan.tubes_uts;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,7 +20,7 @@ import javax.annotation.Nullable;
 public class UserProfile extends AppCompatActivity {
 
     TextView name,email,number;
-
+    ImageView backButton;
     FirebaseAuth mAuth;
     FirebaseFirestore mStore;
     String userID;
@@ -33,6 +36,8 @@ public class UserProfile extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        backButton = findViewById(R.id.back_button);
 
         name = findViewById(R.id.tv_name);
         email = findViewById(R.id.tv_email);
@@ -50,6 +55,15 @@ public class UserProfile extends AppCompatActivity {
                 name.setText(documentSnapshot.getString("name"));
                 email.setText(documentSnapshot.getString("email"));
                 number.setText(documentSnapshot.getString("number"));
+            }
+        });
+
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserProfile.this, MainActivity.class));
             }
         });
     }

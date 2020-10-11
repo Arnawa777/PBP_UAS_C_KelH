@@ -70,8 +70,8 @@ public class GeolocationActivity extends AppCompatActivity implements OnMapReady
     private String styleString;
     private Button button;
     private NavigationMapRoute navigationMapRoute;
-    private Feature symbolLayerIconFeature;
-    ImageView backButton;
+    private Feature symbolLayerIconFeature;ImageView backButton;
+
     private DirectionsRoute currentRoute;
 
     @Override
@@ -170,7 +170,7 @@ public class GeolocationActivity extends AppCompatActivity implements OnMapReady
 
     @Override
     public boolean onMapClick(@NonNull LatLng point) {
-        destination = Point.fromLngLat(-122.181725, 37.452961);
+        destination = Point.fromLngLat(110.269497, -7.717141);
         addDestinationMarker(destination);
         return true;
     }

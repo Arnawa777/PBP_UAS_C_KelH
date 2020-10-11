@@ -7,12 +7,22 @@
     tools:context=".SettingActivity"
     android:background="?attr/bg">
 
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/switchcard"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="100dp"
         android:background="?attr/cardViewBacground">
         <TextView
             android:layout_width="wrap_content"

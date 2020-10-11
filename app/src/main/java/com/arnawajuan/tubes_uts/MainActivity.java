@@ -27,10 +27,8 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout menumak, geo,dark;
-    TextView text;
-    BottomNavigationView bottomNavigationView;
-    View view;
+    LinearLayout menumak, reserv, geo, setting, profile;
+
     private SharePref sharePref;
     LinearLayout logout;
     @Override
@@ -45,9 +43,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         menumak = findViewById(R.id.cardMenu);
+        reserv = findViewById(R.id.cardReservation);
         geo = findViewById(R.id.cardLocation);
-        text = findViewById(R.id.textRecommend);
-        dark = findViewById(R.id.cardDarkmode);
+        profile = findViewById(R.id.cardProfile);
+        setting = findViewById(R.id.cardSetting);
+        logout = findViewById(R.id.cardLogout);
+
+
         menumak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,13 +57,24 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        dark.setOnClickListener(new View.OnClickListener() {
+
+        reserv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    openDark();
+                openReservation();
 
             }
         });
+
+
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    openSetting();
+
+            }
+        });
+
         geo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +83,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        logout = findViewById(R.id.cardLogout);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openProfile();
+
+            }
+        });
+
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,17 +144,23 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openReservation() {
+        Intent intent = new Intent(this, ReservationActivity.class);
+        startActivity(intent);
+    }
+
+    public void openProfile() {
+        Intent intent = new Intent(this, UserProfile.class);
+        startActivity(intent);
+    }
+
     public void openGeolocation() {
         Intent intent = new Intent(this, GeolocationActivity.class);
         startActivity(intent);
     }
 
-    public void callLoginFromLogout(View view) {
-        startActivity(new Intent(getApplicationContext(), UserLogin.class));
-        finish();
-    }
 
-    public void openDark() {
+    public void openSetting() {
         Intent intent = new Intent(this, SettingActivity.class);
         startActivity(intent);
     }
