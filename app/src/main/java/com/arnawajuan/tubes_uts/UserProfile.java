@@ -21,9 +21,16 @@ public class UserProfile extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseFirestore mStore;
     String userID;
+    private SharePref sharePref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharePref =new SharePref(this);
+        if(sharePref.loadDarkModeState()) {
+            setTheme(R.style.SettingDark);
+        }else{
+            setTheme(R.style.SettingLight);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
