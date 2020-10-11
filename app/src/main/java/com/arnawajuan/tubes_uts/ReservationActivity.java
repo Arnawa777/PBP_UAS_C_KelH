@@ -25,9 +25,16 @@ public class ReservationActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ReservationAdapter adapter;
     private SwipeRefreshLayout refreshLayout;
+    private SharePref sharePref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharePref =new SharePref(this);
+        if(sharePref.loadDarkModeState()) {
+            setTheme(R.style.SettingDark);
+        }else{
+            setTheme(R.style.SettingLight);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
 
