@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppThemeLight">
-
+        <activity android:name=".UserProfile"></activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,17 +22,17 @@
         </activity>
         <activity android:name=".UserLogin" />
         <activity android:name=".RegisterUser" />
-        <activity android:name=".MainActivity"
-            android:theme="@style/SettingLight"/>
-        <activity android:name=".GeolocationActivity"/>
-        <activity android:name=".makanan.MenuMakanan"/>
-        <activity android:name=".SettingActivity"/>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/SettingLight" />
+        <activity android:name=".GeolocationActivity" />
+        <activity android:name=".makanan.MenuMakanan" />
+        <activity android:name=".SettingActivity" />
 
         <service android:name=".MessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-
         </service>
 
         <meta-data
