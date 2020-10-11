@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppThemeLight">
 
         <activity android:name=".SplashScreen">
             <intent-filter>
@@ -21,9 +21,11 @@
         </activity>
         <activity android:name=".UserLogin" />
         <activity android:name=".RegisterUser" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:theme="@style/SettingLight"/>
         <activity android:name=".GeolocationActivity"/>
         <activity android:name=".makanan.MenuMakanan"/>
+        <activity android:name=".SettingActivity"/>
 
         <service android:name=".MessagingService">
             <intent-filter>

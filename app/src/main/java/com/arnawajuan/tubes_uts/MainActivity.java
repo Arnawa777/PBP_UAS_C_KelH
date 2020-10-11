@@ -2,6 +2,7 @@ package com.arnawajuan.tubes_uts;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
@@ -26,16 +27,20 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
-    LinearLayout menumak, geo;
+    LinearLayout menumak, geo,dark;
     TextView text;
     BottomNavigationView bottomNavigationView;
     View view;
-
+    private SharePref sharePref;
     LinearLayout logout;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        sharePref = new SharePref(this);
+        if(sharePref.loadDarkModeState()){
+            setTheme(R.style.AppThemeDark);
+        }else{
+            setTheme(R.style.AppThemeLight);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         text = findViewById(R.id.textRecommend);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         view = findViewById(R.id.viewDivider);
-
+        dark = findViewById(R.id.cardDarkmode);
         menumak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +57,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        dark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    openDark();
 
+            }
+        });
         geo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +134,11 @@ public class MainActivity extends AppCompatActivity {
     public void callLoginFromLogout(View view) {
         startActivity(new Intent(getApplicationContext(), UserLogin.class));
         finish();
+    }
+
+    public void openDark() {
+        Intent intent = new Intent(this, SettingActivity.class);
+        startActivity(intent);
     }
 
 

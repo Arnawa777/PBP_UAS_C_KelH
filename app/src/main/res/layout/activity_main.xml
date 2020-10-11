@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorHome"
+    android:background="?attr/bg"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -207,7 +207,7 @@
                     android:paddingEnd="8dp"
                     android:paddingBottom="2dp"
                     android:text="@string/recommend"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorBlack"
                     android:textSize="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -232,6 +232,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="LogOut"
+                    android:textColor="@color/colorBlack"
+                    tools:layout_editor_absoluteX="154dp"
+                    tools:layout_editor_absoluteY="349dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/cardDarkmode"
+                android:layout_width="80dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/white_rectangle_back"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="15dp"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardLogout">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DarkMode"
+                    android:textColor="@color/colorBlack"
                     tools:layout_editor_absoluteX="154dp"
                     tools:layout_editor_absoluteY="349dp" />
 

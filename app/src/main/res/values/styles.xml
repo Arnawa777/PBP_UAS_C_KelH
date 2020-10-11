@@ -1,10 +1,35 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+    <style name="AppThemeLight" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="bg">#e4e4e4e4</item>
+        <item name="cardViewBacground">#ebececec</item>
+        <item name="primaryTextColor">#DE000000</item>
+        <item name="secondaryTextColor">#8A000000</item>
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="bg">#121212</item>
+        <item name="cardViewBacground">#eb121212</item>
+        <item name="primaryTextColor">#ffff</item>
+        <item name="secondaryTextColor">#B3FFFF</item>
+    </style>
+<style name="SettingDark" parent="AppThemeDark">
+</style>
+    <style name="SettingLight" parent="AppThemeLight">
     </style>
 
 </resources>
