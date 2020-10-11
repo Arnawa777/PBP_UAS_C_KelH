@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
@@ -16,19 +17,29 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterUser extends AppCompatActivity {
 
+    public static final String TAG = "TAG";
     TextView btnSignIn;
 
     private TextInputEditText inputName, inputEmail, inputPass, inputNumber;
     Button btnRegister;
     private FirebaseAuth mAuth;
+    FirebaseFirestore mStore;
     private ProgressDialog mLoadingBar;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +59,7 @@ public class RegisterUser extends AppCompatActivity {
 
         //Firebase
         mAuth = FirebaseAuth.getInstance();
+        mStore = FirebaseFirestore.getInstance();
         mLoadingBar = new ProgressDialog(RegisterUser.this);
 
 
@@ -96,8 +108,27 @@ public class RegisterUser extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(RegisterUser.this, "Register Successfull", Toast.LENGTH_SHORT).show();
-
                         mLoadingBar.dismiss();
+                        userID = mAuth.getCurrentUser().getUid();
+                        DocumentReference documentReference = mStore.collection("users").document(userID);
+                        Map<String, Object> user = new HashMap<>();
+                        user.put("name",name);
+                        user.put("email",email);
+                        user.put("number",number);
+                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "user Profile is created for " + userID);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d(TAG, "onFailure: " + e.toString());
+                            }
+                        });
+
+
+
                         Intent intent = new Intent(RegisterUser.this, UserLogin.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
