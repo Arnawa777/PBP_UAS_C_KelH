@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -70,12 +71,14 @@ public class GeolocationActivity extends AppCompatActivity implements OnMapReady
     private Button button;
     private NavigationMapRoute navigationMapRoute;
     private Feature symbolLayerIconFeature;
-
+    ImageView backButton;
     private DirectionsRoute currentRoute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_geolocation);
@@ -83,8 +86,16 @@ public class GeolocationActivity extends AppCompatActivity implements OnMapReady
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
-
+        backButton = findViewById(R.id.back_button);
         styleString = Style.MAPBOX_STREETS;
+
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GeolocationActivity.this, MainActivity.class));
+            }
+        });
 
     }
 
