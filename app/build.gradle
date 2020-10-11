@@ -70,4 +70,12 @@ dependencies {
 
     //FireStore save data
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
+
+    //ROOM
+    def room_version="2.2.5"
+
+    implementation"androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
