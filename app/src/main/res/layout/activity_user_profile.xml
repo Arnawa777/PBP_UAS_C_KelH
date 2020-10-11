@@ -52,6 +52,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imgUser" />
 
         <TextView
+            android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
@@ -88,10 +89,11 @@
             android:textSize="26sp" />
 
         <TextView
+            android:id="@+id/tv_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="+1-202-555-0157"
+            android:text="08xxxxxxxxxx"
             android:textColor="#000000"
             android:textSize="26sp" />
     </LinearLayout>

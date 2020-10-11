@@ -54,7 +54,7 @@ public class UserLogin extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
         String checkbox = preferences.getString("remember", "");
         if (checkbox.equals("true")) {
-            Intent intent = new Intent(UserLogin.this, MainActivity.class);
+            Intent intent = new Intent(UserLogin.this, UserProfile.class);
             startActivity(intent);
         } else if (checkbox.equals("false")) {
             Toast.makeText(this, "Please Sign In", Toast.LENGTH_SHORT).show();
@@ -117,7 +117,7 @@ public class UserLogin extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(UserLogin.this, "Login Successfull", Toast.LENGTH_SHORT).show();
                         mLoadingBar.dismiss();
-                        Intent intent = new Intent(UserLogin.this, MainActivity.class);
+                        Intent intent = new Intent(UserLogin.this, UserProfile.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         createNotificationChannel();
                         addNotification();
@@ -159,7 +159,7 @@ public class UserLogin extends AppCompatActivity {
                 .setContentText("いらっしゃいませ (ɔ◔‿◔)ɔ ♥")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-        Intent notificationIntent = new Intent(this, MainActivity.class);
+        Intent notificationIntent = new Intent(this, UserProfile.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         builder.setContentIntent(contentIntent);
 
