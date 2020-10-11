@@ -34,13 +34,13 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:overScrollMode="never"
         android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@id/viewDivider"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headerLayout"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_editor_absoluteX="-26dp">
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -225,6 +225,7 @@
                     tools:layout_editor_absoluteY="349dp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/cardDarkmode"
                 android:layout_width="80dp"
@@ -252,24 +253,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:backgroundTint="@color/colorWhite"
-        app:itemIconSize="30dp"
-        app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/navigation_menu"/>
-
-    <View
-        android:id="@+id/viewDivider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorAccent"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"/>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

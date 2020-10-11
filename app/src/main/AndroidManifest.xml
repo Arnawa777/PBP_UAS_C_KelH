@@ -25,7 +25,7 @@
         <activity
             android:name=".MainActivity"
             android:theme="@style/SettingLight" />
-        <activity android:name=".UserProfile"></activity>
+        <activity android:name=".UserProfile"/>
         <activity android:name=".GeolocationActivity" />
         <activity android:name=".makanan.MenuMakanan" />
         <activity android:name=".SettingActivity" />
