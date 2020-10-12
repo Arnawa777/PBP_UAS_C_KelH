@@ -4,13 +4,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="709dp"
+        android:layout_height="match_parent"
         android:background="?attr/bg"
         tools:context=".makanan.MenuMakanan">
 
         <ImageView
-            android:id="@+id/btn_capture_photo"
-            android:layout_width="425dp"
+            android:id="@+id/view_shape"
+            android:layout_width="match_parent"
             android:layout_height="189dp"
             android:src="@drawable/shape_kotak"
             app:layout_constraintEnd_toEndOf="parent"
@@ -23,12 +23,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_makanan"
-            android:layout_width="403dp"
-            android:layout_height="648dp"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toEndOf="@id/view_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_capture_photo"
+            app:layout_constraintTop_toBottomOf="@+id/view_shape"
             tools:listitem="@layout/adapter_recycler_view" />
 
         <TextView
@@ -38,10 +39,20 @@
             android:layout_marginTop="72dp"
             android:text="Menu"
             android:textSize="40dp"
-            app:layout_constraintEnd_toEndOf="@+id/btn_capture_photo"
+            app:layout_constraintEnd_toEndOf="@+id/view_shape"
             app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="@+id/btn_capture_photo"
-            app:layout_constraintTop_toTopOf="@+id/btn_capture_photo" />
+            app:layout_constraintStart_toStartOf="@+id/view_shape"
+            app:layout_constraintTop_toTopOf="@+id/view_shape" />
+
+        <ImageView
+            android:id="@+id/back_button_menu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

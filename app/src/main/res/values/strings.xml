@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Tubes_UTS</string>
+    <string name="app_name">Rumah Makan Cilik</string>
 
     //splashscreen
-    <string name="namaRestaurant">Restaurant</string>
-    <string name="slogan">Hungry? Just Order It!</string>
+    <string name="namaRestaurant">Rumah Makan Cilik</string>
+    <string name="slogan">Lapar? Datang dan Makan!</string>
 
     <string name="menu">Menu</string>
     <string name="reservation">Reservation</string>

@@ -1,8 +1,10 @@
 package com.arnawajuan.tubes_uts;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -13,6 +15,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.arnawajuan.tubes_uts.adapter.ReservationAdapter;
 import com.arnawajuan.tubes_uts.database.DatabaseClient;
+import com.arnawajuan.tubes_uts.makanan.MenuMakanan;
 import com.arnawajuan.tubes_uts.model.Reservation;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -26,6 +29,7 @@ public class ReservationActivity extends AppCompatActivity {
     private ReservationAdapter adapter;
     private SwipeRefreshLayout refreshLayout;
     private SharePref sharePref;
+    private ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class ReservationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation);
 
+        backButton = findViewById(R.id.back_button_reservation);
         tambahBtn= findViewById(R.id.btn_plus);
         refreshLayout = findViewById(R.id.swipe_refresh);
         recyclerView = findViewById(R.id.user_rv);
@@ -64,6 +69,15 @@ public class ReservationActivity extends AppCompatActivity {
 
         getReservations();
         searchEmployee();
+
+
+        backButton = findViewById(R.id.back_button_reservation);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ReservationActivity.this, MainActivity.class));
+            }
+        });
     }
 
     private void searchEmployee() {

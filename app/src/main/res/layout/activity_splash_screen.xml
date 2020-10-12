@@ -24,7 +24,7 @@
         android:layout_marginTop="26dp"
         android:fontFamily="@font/antic"
         android:text="@string/namaRestaurant"
-        android:textSize="50sp"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
