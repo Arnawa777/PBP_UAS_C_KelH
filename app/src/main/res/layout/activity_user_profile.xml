@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:text="08xxxxxxxxxx"
-            android:textColor="#000000"
+            android:textColor="@color/Blue"
             android:textSize="26sp" />
     </LinearLayout>
 
