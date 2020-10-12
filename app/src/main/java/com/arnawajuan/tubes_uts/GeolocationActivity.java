@@ -147,6 +147,8 @@ public class GeolocationActivity extends AppCompatActivity implements OnMapReady
                     navigationMapRoute = new NavigationMapRoute(null, mapView, mapboxMap);
                     initLayers(style);
                     mapboxMap.addOnMapClickListener(this);
+
+
                     button = findViewById(R.id.startButton);
                     button.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -172,6 +174,11 @@ public class GeolocationActivity extends AppCompatActivity implements OnMapReady
     public boolean onMapClick(@NonNull LatLng point) {
         destination = Point.fromLngLat(110.269497, -7.717141);
         addDestinationMarker(destination);
+        mapboxMap.animateCamera(CameraUpdateFactory.newCameraPosition(
+                new CameraPosition.Builder()
+                        .target(new LatLng(destination.latitude(), destination.longitude()))
+                        .zoom(14)
+                        .build()), 4000);
         return true;
     }
 
