@@ -3,50 +3,63 @@ package com.arnawajuan.tubes_uts.api;
 import com.google.gson.annotations.SerializedName;
 
 public class UserDAO {
-    @SerializedName("nama")
-    private String nama;
+    @SerializedName("id")
+    private String id;
 
-    @SerializedName("email")
-    private String email;
+    @SerializedName("name")
+    private String name;
 
     @SerializedName("phone_number")
     private String phone_number;
 
+    @SerializedName("email")
+    private String email;
+
     @SerializedName("password")
     private String password;
 
-    public UserDAO(String nama,String email,String phone_number, String password){
-        this.nama=nama;
-        this.email=email;
-        this.phone_number=phone_number;
-        this.password=password;
-    }
-    public String getNama() {
-        return nama;
+    public UserDAO(String id, String name, String phone_number , String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.phone_number = phone_number;
+        this.email = email;
+        this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getPhone_number() {
         return phone_number;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public String getPassword() {
         return password;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setNim(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setProdi(String phone_number) {
+    public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
