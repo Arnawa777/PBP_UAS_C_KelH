@@ -27,6 +27,10 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class UserLogin extends AppCompatActivity {
     private String CHANNEL_ID = "Channel 1";
 
@@ -35,7 +39,7 @@ public class UserLogin extends AppCompatActivity {
     private TextInputEditText inputEmail, inputPass;
     Button loginBtn;
     CheckBox remember;
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
     private ProgressDialog mLoadingBar;
 
     @Override
@@ -46,7 +50,7 @@ public class UserLogin extends AppCompatActivity {
         inputEmail = findViewById(R.id.inputEmail);
         inputPass = findViewById(R.id.inputPassword);
         remember = findViewById(R.id.rememberMe);
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
         mLoadingBar = new ProgressDialog(UserLogin.this);
         btnSignUp = findViewById(R.id.signUp);
         loginBtn = findViewById(R.id.btnLogin);
@@ -111,23 +115,57 @@ public class UserLogin extends AppCompatActivity {
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
 
-            mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+            Call<UserResponse> userDAOCall = apiService.loginUser(email,pass);
+
+            userDAOCall.enqueue(new Callback<UserResponse>() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(UserLogin.this, "Login Successfull", Toast.LENGTH_SHORT).show();
-                        mLoadingBar.dismiss();
-                        Intent intent = new Intent(UserLogin.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        createNotificationChannel();
-                        addNotification();
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(UserLogin.this, "Email or Password not Valid", Toast.LENGTH_LONG).show();
-                        mLoadingBar.dismiss();
+                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                    if(response.body().getMessage().equalsIgnoreCase("Authenticated" )){
+                            mLoadingBar.dismiss();
+//                            UserDAO user = response.body().getUsers().get(0);
+                            Intent i = new Intent(UserLogin.this, MainActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            createNotificationChannel();
+                            addNotification();
+//                            i.putExtra("id",user.getId());
+//                            i.putExtra("name",user.getName());
+//                            i.putExtra("nim",user.getEmail());
+//                            i.putExtra("prodi",user.getPhone_number());
+                            startActivity(i);
+                            finish();
+                            Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
+                    else
+                        Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        mLoadingBar.dismiss();
+                }
+
+                @Override
+                public void onFailure(Call<UserResponse> call, Throwable t) {
+                    //failure
                 }
             });
+
+
+//            mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                @Override
+//                public void onComplete(@NonNull Task<AuthResult> task) {
+//                    if (task.isSuccessful()) {
+//                        Toast.makeText(UserLogin.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+//                        mLoadingBar.dismiss();
+//                        Intent intent = new Intent(UserLogin.this, MainActivity.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                        createNotificationChannel();
+//                        addNotification();
+//                        startActivity(intent);
+//                    } else {
+//                        Toast.makeText(UserLogin.this, "Email or Password not Valid", Toast.LENGTH_LONG).show();
+//                        mLoadingBar.dismiss();
+//                    }
+//                }
+//            });
         }
     }
 

@@ -29,6 +29,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RegisterUser extends AppCompatActivity {
 
     public static final String TAG = "TAG";
@@ -36,8 +40,8 @@ public class RegisterUser extends AppCompatActivity {
 
     private TextInputEditText inputName, inputEmail, inputPass, inputNumber;
     Button btnRegister;
-    private FirebaseAuth mAuth;
-    FirebaseFirestore mStore;
+//    private FirebaseAuth mAuth;
+//    FirebaseFirestore mStore;
     private ProgressDialog mLoadingBar;
     String userID;
 
@@ -58,8 +62,8 @@ public class RegisterUser extends AppCompatActivity {
 
 
         //Firebase
-        mAuth = FirebaseAuth.getInstance();
-        mStore = FirebaseFirestore.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
+//        mStore = FirebaseFirestore.getInstance();
         mLoadingBar = new ProgressDialog(RegisterUser.this);
 
 
@@ -95,7 +99,7 @@ public class RegisterUser extends AppCompatActivity {
             showError(inputEmail, "Email is not valid");
         } else if (number.isEmpty() || !number.matches(checkNumber)) {
             showError(inputNumber, "Must have 10-13 digit");
-        } else if (pass.isEmpty() || pass.length() > 6) {
+        } else if (pass.isEmpty() || pass.length() < 6) {
             showError(inputPass, "Password must be 6 character");
         } else {
             mLoadingBar.setTitle("Registration");
@@ -103,43 +107,26 @@ public class RegisterUser extends AppCompatActivity {
             mLoadingBar.setCanceledOnTouchOutside(false);
             mLoadingBar.show();
 
-            mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+            Call<UserResponse> add = apiService.register(name, email, number, pass);
+
+            add.enqueue(new Callback<UserResponse>() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(RegisterUser.this, "Register Successfull", Toast.LENGTH_SHORT).show();
-                        mLoadingBar.dismiss();
-                        userID = mAuth.getCurrentUser().getUid();
-                        DocumentReference documentReference = mStore.collection("users").document(userID);
-                        Map<String, Object> user = new HashMap<>();
-                        user.put("name",name);
-                        user.put("email",email);
-                        user.put("number",number);
-                        documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "user Profile is created for " + userID);
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.d(TAG, "onFailure: " + e.toString());
-                            }
-                        });
+                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                    Log.i("banana",response.message()+"header : "+ response.headers().toString());
+                    Toast.makeText(RegisterUser.this, "Berhasil menambah user", Toast.LENGTH_SHORT).show();
+                    mLoadingBar.dismiss();
+                    onBackPressed();
+                }
 
-
-
-                        Intent intent = new Intent(RegisterUser.this, UserLogin.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(RegisterUser.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                        mLoadingBar.dismiss();
-                    }
-
-
+                @Override
+                public void onFailure(Call<UserResponse> call, Throwable t) {
+                    Toast.makeText(RegisterUser.this, "Gagal menambah user", Toast.LENGTH_SHORT).show();
+                    mLoadingBar.dismiss();
+                    Log.i("banana",t.getMessage());
                 }
             });
+
         }
     }
 
