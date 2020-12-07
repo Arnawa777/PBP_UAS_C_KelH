@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,15 +17,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
 import com.arnawajuan.rumah_makan_cilik.api.ApiClient;
 import com.arnawajuan.rumah_makan_cilik.api.ApiInterface;
-import com.arnawajuan.rumah_makan_cilik.api.UserDAO;
 import com.arnawajuan.rumah_makan_cilik.api.UserResponse;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.firestore.auth.User;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,11 +36,6 @@ import retrofit2.Response;
 
 public class UserLogin extends AppCompatActivity {
     private String CHANNEL_ID = "Channel 1";
-//    private static final String USER_PREF_NAME = "User";
-
-//    SharedPreferences preferences;
-//    String token = "";
-//    int id = -1;
 
     TextView btnSignUp;
 
@@ -129,15 +126,15 @@ public class UserLogin extends AppCompatActivity {
                 public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                     if(response.body().getMessage().equalsIgnoreCase("Authenticated" )){
                             mLoadingBar.dismiss();
-                            UserDAO user = response.body().getUsers().get(0);
+//                            UserDAO user = response.body().getUsers().get(0);
                             Intent i = new Intent(UserLogin.this, MainActivity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             createNotificationChannel();
                             addNotification();
-                            i.putExtra("id",user.getId());
-                            i.putExtra("name",user.getName());
-                            i.putExtra("email",user.getEmail());
-                            i.putExtra("phone",user.getPhone_number());
+//                            i.putExtra("id",user.getId());
+//                            i.putExtra("name",user.getName());
+//                            i.putExtra("nim",user.getEmail());
+//                            i.putExtra("prodi",user.getPhone_number());
                             startActivity(i);
                             finish();
                             Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
@@ -145,13 +142,12 @@ public class UserLogin extends AppCompatActivity {
                     else
                     {
                         Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        mLoadingBar.dismiss();
                     }
                 }
                 @Override
                 public void onFailure(Call<UserResponse> call, Throwable t) {
-                    Toast.makeText(UserLogin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
-                    mLoadingBar.dismiss();
-                    Log.i("banana",t.getMessage());
+                    Toast.makeText(UserLogin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -182,7 +178,7 @@ public class UserLogin extends AppCompatActivity {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle("Welcome")
-                .setContentText("Good Food Good Price (ɔ◔‿◔)ɔ ♥")
+                .setContentText("いらっしゃいませ (ɔ◔‿◔)ɔ ♥")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         Intent notificationIntent = new Intent(this, MainActivity.class);
@@ -192,20 +188,6 @@ public class UserLogin extends AppCompatActivity {
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(0, builder.build());
     }
-
-//    private void savePreferences() {
-//        preferences = getSharedPreferences(USER_PREF_NAME, MODE_PRIVATE);
-//        SharedPreferences.Editor editor = preferences.edit();
-//        editor.putInt("id", id);
-//        editor.putString("token", token);
-//        editor.apply();
-//    }
-//
-//    private void loadPreferences() {
-//        preferences = getSharedPreferences(USER_PREF_NAME, MODE_PRIVATE);
-//        token = preferences.getString("token", "");
-//        id = preferences.getInt("id", -1);
-//    }
 }
 
 
