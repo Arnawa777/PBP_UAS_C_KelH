@@ -80,7 +80,7 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-
+    testCompile 'org.mockito:mockito-all:1.10.19'
     //API
 
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

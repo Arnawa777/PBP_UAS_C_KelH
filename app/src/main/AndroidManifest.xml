@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".UserLogin" />
-        <activity android:name=".RegisterUser" />
+        <activity android:name=".UnitTest.UserRegister" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/SettingLight" />
