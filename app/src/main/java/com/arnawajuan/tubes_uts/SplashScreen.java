@@ -11,6 +11,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.arnawajuan.tubes_uts.makanan.MenuMakanan;
+
 public class SplashScreen extends AppCompatActivity {
     private static int SPLASH_SCREEN = 5000;
 

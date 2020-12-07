@@ -138,37 +138,19 @@ public class UserLogin extends AppCompatActivity {
                             startActivity(i);
                             finish();
                             Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-
                     }
                     else
+                    {
+                        Intent i = new Intent(UserLogin.this, MainActivity.class);
                         Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         mLoadingBar.dismiss();
+                    }
                 }
-
                 @Override
                 public void onFailure(Call<UserResponse> call, Throwable t) {
                     //failure
                 }
             });
-
-
-//            mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                @Override
-//                public void onComplete(@NonNull Task<AuthResult> task) {
-//                    if (task.isSuccessful()) {
-//                        Toast.makeText(UserLogin.this, "Login Successfull", Toast.LENGTH_SHORT).show();
-//                        mLoadingBar.dismiss();
-//                        Intent intent = new Intent(UserLogin.this, MainActivity.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        createNotificationChannel();
-//                        addNotification();
-//                        startActivity(intent);
-//                    } else {
-//                        Toast.makeText(UserLogin.this, "Email or Password not Valid", Toast.LENGTH_LONG).show();
-//                        mLoadingBar.dismiss();
-//                    }
-//                }
-//            });
         }
     }
 
