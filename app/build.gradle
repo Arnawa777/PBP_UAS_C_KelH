@@ -6,7 +6,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.arnawajuan.tubes_uts"
+        applicationId "com.arnawajuan.rumah_makan_cilik"
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
@@ -80,7 +80,7 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-
+    testCompile 'org.mockito:mockito-all:1.10.19'
     //API
 
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:546743402585:android:0d93a3b1fb27fb3aa63148",
         "android_client_info": {
-          "package_name": "com.arnawajuan.tubes_uts"
+          "package_name": "com.arnawajuan.rumah_makan_cilik"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "546743402585-iqo6e2t44kve1vq17jqvidnnqarbhhog.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.arnawajuan.tubes_uts",
+            "package_name": "com.arnawajuan.rumah_makan_cilik",
             "certificate_hash": "3721bdcb97fb4a8f6922a896087d540e871bef0b"
           }
         },

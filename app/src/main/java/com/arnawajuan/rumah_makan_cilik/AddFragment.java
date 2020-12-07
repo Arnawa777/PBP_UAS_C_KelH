@@ -1,0 +1,199 @@
+package com.arnawajuan.rumah_makan_cilik;
+
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.arnawajuan.rumah_makan_cilik.database.DatabaseClient;
+import com.arnawajuan.rumah_makan_cilik.model.Reservation;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.text.ParseException;
+import java.util.Date;
+
+
+public class AddFragment extends Fragment {
+    private static final String TAG = "AddFragment";
+    TextInputLayout layoutName;
+    TextInputEditText eTName;
+    TextView tvDate,tvTime;
+    int tHour,tMinutes;
+    DatePickerDialog.OnDateSetListener mDateSetListener;
+    Button addBtn, cancelBtn;
+    Reservation reservation;
+
+    public AddFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate ( R.layout.fragment_add,container,false );
+
+        layoutName=view.findViewById ( R.id.input_name_layout );
+        eTName = view.findViewById ( R.id.input_name );
+        tvDate = (TextView) view.findViewById(R.id.date_text);
+        tvTime= (TextView) view.findViewById(R.id.time_text);
+        addBtn = view.findViewById ( R.id.btnA_add );
+        cancelBtn = view.findViewById ( R.id.btnA_cancel );
+
+        try {
+            if (reservation.getFullName () != null){
+                eTName.setText ( reservation.getFullName () );
+            } else {
+                eTName.setText ( "-" );
+            }
+        }catch (Exception ex){
+            ex.printStackTrace ();
+        }
+        return view;
+    }
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated ( view, savedInstanceState );
+
+        addBtn.setOnClickListener ( new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+
+                String time = tvTime.getText().toString ();
+                String name = eTName.getText().toString ();
+                String date = tvDate.getText().toString ();
+                if(time.isEmpty())
+                    tvTime.setError("Please Input Time correctly");
+
+                if(name.isEmpty())
+                    layoutName.setError("Please fill name correctly");
+
+                if(date.isEmpty())
+                    tvDate.setError("Please input date correctly");
+
+                if(!time.isEmpty() && !name.isEmpty() && !date.isEmpty()) {
+                    addReservation();
+                    back(view);
+                }
+            }
+        } );
+
+        cancelBtn.setOnClickListener ( new View.OnClickListener () {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getFragmentManager ().beginTransaction ();
+                transaction.hide ( AddFragment.this ).commit ();
+            }
+        } );
+
+        tvDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                    DatePickerDialog dialog = new DatePickerDialog(getActivity(),android.R.style.Theme_Holo_Light_Dialog, mDateSetListener,year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Log.d(TAG,"onDateSet : dd/mm/yyyy : " + dayOfMonth + "/" +month+ "/" +year);
+
+                String date = + dayOfMonth + "/" +month+ "/" +year;
+                tvDate.setText(date);
+            }
+        };
+
+        tvTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(
+                        getActivity(),
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                tHour = hourOfDay;
+                                tMinutes = minute;
+
+                                String time = tHour + ":" + tMinutes;
+                                SimpleDateFormat f24Hours = new SimpleDateFormat(
+                                        "HH:mm"
+                                );
+                                try{
+                                    Date date =f24Hours.parse(time);
+                                    SimpleDateFormat f12Hours = new SimpleDateFormat(
+                                            "hh:mm aa"
+                                    );
+                                    tvTime.setText(f12Hours.format(date));
+                                }catch (ParseException e){
+                                    e.printStackTrace();
+                                }
+                            }
+                        },12,0,false
+                );
+                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                timePickerDialog.updateTime(tHour,tMinutes);
+                timePickerDialog.show();
+            }
+        });
+
+    }
+
+
+    private void addReservation(){
+        class AddReservation extends AsyncTask<Void,Void,Void>{
+            @Override
+            protected Void doInBackground(Void... voids) {
+                final String name = eTName.getText ().toString ();
+                final String date = tvDate.getText ().toString ();
+                final String time = tvTime.getText ().toString ();
+                Reservation reservation = new Reservation ();
+                reservation.setFullName ( name );
+                reservation.setDate ( date );
+                reservation.setTime ( time );
+                DatabaseClient.getInstance ( getActivity ().getApplicationContext () ).getDatabase ()
+                        .reservationDao()
+                        .insert ( reservation );
+                return null;
+            }
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute ( aVoid );
+                Toast.makeText ( getActivity ().getApplicationContext (),"Reservation added", Toast.LENGTH_SHORT ).show ();
+                FragmentTransaction transaction = getFragmentManager ().beginTransaction ();
+                transaction.hide ( AddFragment.this ).commit ();
+            }
+        }
+        AddReservation add = new AddReservation();
+        add.execute (  );
+    }
+
+    private void back(View view) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.hide(AddFragment.this).commit();
+    }
+}

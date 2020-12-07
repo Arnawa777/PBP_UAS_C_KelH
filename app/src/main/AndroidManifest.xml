@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.arnawajuan.tubes_uts">
+    package="com.arnawajuan.rumah_makan_cilik">
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,25 +15,25 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppThemeLight">
 
-        <activity android:name=".SplashScreen">
+        <activity android:name="com.arnawajuan.rumah_makan_cilik.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserLogin" />
-        <activity android:name=".RegisterUser" />
+        <activity android:name="com.arnawajuan.rumah_makan_cilik.UserLogin" />
+        <activity android:name="com.arnawajuan.rumah_makan_cilik.RegisterUser" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.arnawajuan.rumah_makan_cilik.MainActivity"
             android:theme="@style/SettingLight" />
-        <activity android:name=".UserProfile"/>
-        <activity android:name=".GeolocationActivity" />
-        <activity android:name=".makanan.MenuMakanan" />
-        <activity android:name=".SettingActivity" />
-        <activity android:name=".ReservationActivity"/>
+        <activity android:name="com.arnawajuan.rumah_makan_cilik.UserProfile"/>
+        <activity android:name="com.arnawajuan.rumah_makan_cilik.GeolocationActivity" />
+        <activity android:name="com.arnawajuan.rumah_makan_cilik.makanan.MenuMakanan" />
+        <activity android:name="com.arnawajuan.rumah_makan_cilik.SettingActivity" />
+        <activity android:name="com.arnawajuan.rumah_makan_cilik.ReservationActivity"/>
 
-        <service android:name=".MessagingService">
+        <service android:name="com.arnawajuan.rumah_makan_cilik.MessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>

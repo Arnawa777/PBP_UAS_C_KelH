@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:background="@color/colorWelcome"
         android:padding="10dp"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,19 +25,11 @@
             android:src="@drawable/ic_arrow_back_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <ImageView
-            android:id="@+id/camera_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="128dp"
-            android:src="@drawable/ic_baseline_add_a_photo_24"
-            app:layout_constraintStart_toEndOf="@+id/imgUser"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <RelativeLayout
             android:id="@+id/imgUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/circle_border"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,78 +39,122 @@
 
             <ImageView
                 android:id="@+id/view_foto"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_margin="9dp"
                 android:adjustViewBounds="true"
                 android:background="@drawable/circle"
                 android:padding="3dp"
                 android:scaleType="centerInside" />
 
+            <ImageView
+                android:id="@+id/camera_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="160dp"
+                android:src="@drawable/ic_baseline_add_a_photo_24" />
+
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:layout_marginTop="15dp"
-            android:text="Kuro"
-            android:textColor="@color/colorBlack"
-            android:textSize="32sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgUser" />
 
-        <TextView
-            android:id="@+id/tv_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:layout_marginTop="10dp"
-            android:text="example@gmail.com"
-            android:textColor="@color/colorBlack"
-            android:textSize="26sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:layout_width="395dp"
-        android:layout_height="77dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
+        android:padding="10dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headerLayout">
 
-
-        <TextView
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Phone"
-            android:textColor="@color/Blue"
-            android:textSize="26sp" />
+            android:hint="@string/inp_email"
+            app:boxStrokeColor="@color/colorAccent"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/colorAccent"
+            app:hintTextColor="@color/colorAccent"
+            app:startIconDrawable="@drawable/email_24"
+            app:startIconTint="@color/colorAccent">
 
-        <TextView
-            android:id="@+id/tv_number"
-            android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputEmail"
+                android:editable="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:text="08xxxxxxxxxx"
-            android:textColor="@color/Blue"
-            android:textSize="26sp" />
+            android:layout_marginTop="20dp"
+            android:hint="@string/inp_name"
+            app:boxStrokeColor="@color/colorAccent"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/colorAccent"
+            app:hintTextColor="@color/colorAccent"
+            app:startIconDrawable="@drawable/ic_pencil"
+            app:startIconTint="@color/colorAccent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/inp_number"
+            app:boxStrokeColor="@color/colorAccent"
+            app:boxStrokeWidthFocused="2dp"
+            app:endIconMode="clear_text"
+            app:endIconTint="@color/colorAccent"
+            app:hintTextColor="@color/colorAccent"
+            app:startIconDrawable="@drawable/ic_number"
+            app:startIconTint="@color/colorAccent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputNumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="phone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/update_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorAccent"
+            android:text="@string/update_profile"
+            android:textColor="@color/colorWhite"
+            android:transitionName="transition_next"/>
+
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
