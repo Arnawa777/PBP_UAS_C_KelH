@@ -1,0 +1,433 @@
+Index: app/src/main/res/layout/activity_register_user.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"@color/colorWelcome\"\r\n    android:padding=\"30dp\"\r\n    tools:context=\".RegisterUser\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_weight=\"1\"\r\n        android:gravity=\"center|top\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <TextView\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"15dp\"\r\n            android:text=\"@string/register\"\r\n            android:textAllCaps=\"true\"\r\n            android:textColor=\"@color/colorBlack\"\r\n            android:textSize=\"40sp\"\r\n            android:textStyle=\"bold\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:layout_marginTop=\"50dp\"\r\n            android:orientation=\"vertical\">\r\n\r\n            <com.google.android.material.textfield.TextInputLayout\r\n                style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:hint=\"@string/inp_name\"\r\n                app:boxStrokeColor=\"@color/colorBlack\"\r\n                app:boxStrokeWidthFocused=\"2dp\"\r\n                app:endIconMode=\"clear_text\"\r\n                app:endIconTint=\"@color/colorBlack\"\r\n                app:hintTextColor=\"@color/colorBlack\"\r\n                app:startIconDrawable=\"@drawable/ic_pencil\"\r\n                app:startIconTint=\"@color/colorBlack\">\r\n\r\n                <com.google.android.material.textfield.TextInputEditText\r\n                    android:id=\"@+id/inputName\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:inputType=\"text\"\r\n\r\n                    />\r\n\r\n            </com.google.android.material.textfield.TextInputLayout>\r\n\r\n            <com.google.android.material.textfield.TextInputLayout\r\n                style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"20dp\"\r\n                android:hint=\"@string/inp_email\"\r\n                app:boxStrokeColor=\"@color/colorBlack\"\r\n                app:boxStrokeWidthFocused=\"2dp\"\r\n                app:endIconMode=\"clear_text\"\r\n                app:endIconTint=\"@color/colorBlack\"\r\n                app:hintTextColor=\"@color/colorBlack\"\r\n                app:startIconDrawable=\"@drawable/email_24\"\r\n                app:startIconTint=\"@color/colorBlack\">\r\n\r\n                <com.google.android.material.textfield.TextInputEditText\r\n                    android:id=\"@+id/inputEmail\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:inputType=\"textEmailAddress\"\r\n\r\n                    />\r\n\r\n            </com.google.android.material.textfield.TextInputLayout>\r\n\r\n            <com.google.android.material.textfield.TextInputLayout\r\n                style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"20dp\"\r\n                android:hint=\"@string/inp_number\"\r\n                app:boxStrokeColor=\"@color/colorBlack\"\r\n                app:boxStrokeWidthFocused=\"2dp\"\r\n                app:endIconMode=\"clear_text\"\r\n                app:endIconTint=\"@color/colorBlack\"\r\n                app:hintTextColor=\"@color/colorBlack\"\r\n                app:startIconDrawable=\"@drawable/ic_number\"\r\n                app:startIconTint=\"@color/colorBlack\">\r\n\r\n                <com.google.android.material.textfield.TextInputEditText\r\n                    android:id=\"@+id/inputNumber\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:inputType=\"phone\" />\r\n\r\n            </com.google.android.material.textfield.TextInputLayout>\r\n\r\n            <com.google.android.material.textfield.TextInputLayout\r\n                style=\"@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"20dp\"\r\n                android:hint=\"@string/inp_password\"\r\n                app:boxStrokeColor=\"@color/colorBlack\"\r\n                app:boxStrokeWidthFocused=\"2dp\"\r\n                app:endIconMode=\"password_toggle\"\r\n                app:endIconTint=\"@color/colorBlack\"\r\n                app:hintTextColor=\"@color/colorBlack\"\r\n                app:startIconDrawable=\"@drawable/https_24\"\r\n                app:startIconTint=\"@color/colorBlack\">\r\n\r\n                <com.google.android.material.textfield.TextInputEditText\r\n                    android:id=\"@+id/inputPassword\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:inputType=\"textPassword\" />\r\n\r\n            </com.google.android.material.textfield.TextInputLayout>\r\n\r\n\r\n\r\n            <Button\r\n                android:id=\"@+id/register\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"20dp\"\r\n                android:background=\"@color/colorBlack\"\r\n                android:text=\"@string/register\"\r\n                android:textColor=\"@color/colorWhite\"\r\n                android:transitionName=\"transition_next\"/>\r\n\r\n            <Button\r\n                android:id=\"@+id/signIn\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_gravity=\"center\"\r\n                android:layout_marginTop=\"20dp\"\r\n                android:background=\"#0000\"\r\n                android:text=\"@string/already\"\r\n                android:transitionName=\"transition_sign_in\"/>\r\n\r\n\r\n        </LinearLayout>\r\n\r\n    </LinearLayout>\r\n\r\n</ScrollView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_register_user.xml	(revision 1dfc73e6f83d573e15e887ecc3cc4e0bd7dc7f81)
++++ app/src/main/res/layout/activity_register_user.xml	(date 1607327142839)
+@@ -32,6 +32,7 @@
+             android:orientation="vertical">
+ 
+             <com.google.android.material.textfield.TextInputLayout
++                android:id="@+id/inputLayoutName"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+@@ -55,6 +56,7 @@
+             </com.google.android.material.textfield.TextInputLayout>
+ 
+             <com.google.android.material.textfield.TextInputLayout
++                android:id="@+id/inputLayoutEmail"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+@@ -79,6 +81,7 @@
+             </com.google.android.material.textfield.TextInputLayout>
+ 
+             <com.google.android.material.textfield.TextInputLayout
++                android:id="@+id/inputLayoutPhone"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+@@ -101,6 +104,7 @@
+             </com.google.android.material.textfield.TextInputLayout>
+ 
+             <com.google.android.material.textfield.TextInputLayout
++                android:id="@+id/inputLayoutPassword"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>apply plugin: 'com.android.application'\r\napply plugin: 'com.google.gms.google-services'\r\n\r\nandroid {\r\n    compileSdkVersion 30\r\n    buildToolsVersion \"30.0.2\"\r\n\r\n    defaultConfig {\r\n        applicationId \"com.arnawajuan.tubes_uts\"\r\n        minSdkVersion 26\r\n        targetSdkVersion 30\r\n        versionCode 1\r\n        versionName \"1.0\"\r\n\r\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\r\n    }\r\n\r\n    buildTypes {\r\n        release {\r\n            minifyEnabled false\r\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\r\n        }\r\n    }\r\n    buildFeatures {\r\n        dataBinding true\r\n    }\r\n\r\n    compileOptions {\r\n        sourceCompatibility JavaVersion.VERSION_1_8\r\n        targetCompatibility JavaVersion.VERSION_1_8\r\n    }\r\n}\r\n\r\ndependencies {\r\n    implementation fileTree(dir: \"libs\", include: [\"*.jar\"])\r\n    implementation 'androidx.appcompat:appcompat:1.2.0'\r\n    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'\r\n    testImplementation 'junit:junit:4.12'\r\n    androidTestImplementation 'androidx.test.ext:junit:1.1.2'\r\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'\r\n\r\n    //FireBase Login\r\n    implementation 'com.google.firebase:firebase-auth:19.4.0'\r\n    implementation 'com.google.firebase:firebase-analytics:17.5.0'\r\n\r\n    //Material Design\r\n    implementation 'com.google.android.material:material:1.1.0'\r\n\r\n    //Rounded Image View\r\n    implementation 'com.makeramen:roundedimageview:2.3.0'\r\n\r\n    //Navigation Component\r\n    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.0-rc03'\r\n    implementation 'androidx.navigation:navigation-ui-ktx:2.2.0-rc03'\r\n\r\n\r\n    //noinspection GradleCompatible\r\n    implementation 'com.android.support:recyclerview-v7:28.0.0' //recycleview\r\n    //noinspection GradleCompatible\r\n    implementation 'com.android.support:cardview-v7:28.0.0' //cardview\r\n\r\n    //geolocation\r\n    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.0'\r\n    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6'\r\n    implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-places-v9:0.12.0'\r\n\r\n    //FireBase Push notification\r\n    implementation 'com.google.firebase:firebase-core:17.5.1'\r\n    implementation 'com.google.firebase:firebase-messaging:20.3.0'\r\n\r\n    //FireStore save data\r\n    implementation 'com.google.firebase:firebase-firestore:17.1.2'\r\n\r\n    //ROOM\r\n    def room_version=\"2.2.5\"\r\n\r\n    implementation\"androidx.room:room-runtime:$room_version\"\r\n    annotationProcessor \"androidx.room:room-compiler:$room_version\"\r\n\r\n    implementation \"androidx.swiperefreshlayout:swiperefreshlayout:1.1.0\"\r\n\r\n\r\n    //API\r\n\r\n    implementation 'com.squareup.retrofit2:retrofit:2.4.0'\r\n    implementation 'com.google.code.gson:gson:2.8.2'\r\n    implementation 'com.squareup.retrofit2:converter-gson:2.0.2'\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 1dfc73e6f83d573e15e887ecc3cc4e0bd7dc7f81)
++++ app/build.gradle	(date 1607265004660)
+@@ -79,7 +79,7 @@
+ 
+     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+ 
+-
++    testCompile 'org.mockito:mockito-all:1.10.19'
+     //API
+ 
+     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+Index: app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterService.java	(date 1607303592566)
++++ app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterService.java	(date 1607303592566)
+@@ -0,0 +1,47 @@
++package com.arnawajuan.tubes_uts.UnitTest;
++
++import androidx.annotation.NonNull;
++
++import com.google.android.gms.tasks.OnCompleteListener;
++import com.google.android.gms.tasks.Task;
++import com.google.firebase.auth.AuthResult;
++import com.google.firebase.auth.FirebaseAuth;
++
++public class RegisterService {
++    FirebaseAuth fAuth;
++
++    public void register(final RegisterView view, String name, String email, String phone,String password, final RegisterCallback callback) {
++        fAuth = FirebaseAuth.getInstance();
++
++        fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
++            @Override
++            public void onComplete(@NonNull Task<AuthResult> task) {
++                if (task.isSuccessful()) {
++                    view.showRegisterMessage("Register success!");
++                    callback.onSuccess(true);
++                } else {
++                    view.showRegisterError("Register failed!");
++                    callback.onError();
++                }
++            }
++        });
++    }
++
++    public Boolean getValid(final RegisterView view, String name, String email, String phone,String password) {
++        final Boolean[] bool = new Boolean[1];
++
++        register(view,name, email,phone, password, new RegisterCallback() {
++            @Override
++            public void onSuccess(boolean value) {
++                bool[0] = true;
++            }
++
++            @Override
++            public void onError() {
++                bool[0] = false;
++            }
++        });
++
++        return bool[0];
++    }
++}
+Index: app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterPresenter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterPresenter.java	(date 1607328764941)
++++ app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterPresenter.java	(date 1607328764941)
+@@ -0,0 +1,69 @@
++package com.arnawajuan.tubes_uts.UnitTest;
++
++import androidx.core.util.PatternsCompat;
++
++import com.google.firebase.auth.FirebaseAuth;
++
++public class RegisterPresenter {
++    private RegisterView view;
++    private RegisterService service;
++    private RegisterCallback callback;
++    FirebaseAuth fAuth;
++
++    public RegisterPresenter(RegisterView view, RegisterService service) {
++        this.view = view;
++        this.service = service;
++    }
++
++    public void onRegisterClicked() {
++
++        boolean flag = true;
++        String checkName = "\\A\\w{3,20}\\z";
++        String checkNumber = "\\A\\w{10,13}\\z";
++
++        if (view.getName().isEmpty()) {
++            view.showNameError("Name is Empty");
++            flag = false;
++        } else if (view.getName().matches(checkName)) {
++            view.showNameError("Name must be 3-20 character");
++            flag = false;
++        } else view.showNameError(null);
++
++        if (view.getEmail().isEmpty()) {
++            view.showEmailError("Email is Empty");
++            flag = false;
++        } else if (!PatternsCompat.EMAIL_ADDRESS.matcher(view.getEmail()).matches()) {
++            view.showEmailError("Email Invalid");
++            flag = false;
++        } else view.showEmailError(null);
++
++        if (view.getPhone().isEmpty()) {
++            view.showPhoneError("Phone is Empty");
++            flag = false;
++        } else if (view.getPassword().matches(checkNumber)) {
++            view.showPhoneError("Phone must have 10-13 digit");
++            flag = false;
++        } else view.showPhoneError(null);
++
++        if (view.getPassword().isEmpty()) {
++            view.showPasswordError("Password is Empty");
++            flag = false;
++        } else if (view.getPassword().length() < 6) {
++            view.showPasswordError("Password must be 6 character");
++            flag = false;
++        } else view.showPasswordError(null);
++
++        if (flag){
++            service.register(view, view.getName(), view.getEmail(), view.getPhone(), view.getPassword(), new RegisterCallback() {
++                @Override
++                public void onSuccess(boolean value) {
++                    view.startMainActivity();
++                }
++
++                @Override
++                public void onError() {
++                }
++            });
++        }
++    }
++}
+Index: app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/UserRegister.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/UserRegister.java	(date 1607303592592)
++++ app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/UserRegister.java	(date 1607303592592)
+@@ -0,0 +1,158 @@
++package com.arnawajuan.tubes_uts.UnitTest;
++
++import android.app.ActivityOptions;
++import android.app.NotificationChannel;
++import android.app.NotificationManager;
++import android.app.PendingIntent;
++import android.app.ProgressDialog;
++import android.content.Context;
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.os.Build;
++import android.os.Bundle;
++import android.os.Handler;
++import android.os.Looper;
++import android.util.Pair;
++import android.view.View;
++import android.widget.Button;
++import android.widget.CheckBox;
++import android.widget.CompoundButton;
++import android.widget.EditText;
++import android.widget.ImageView;
++import android.widget.TextView;
++import android.widget.Toast;
++
++import androidx.annotation.NonNull;
++import androidx.appcompat.app.AppCompatActivity;
++import androidx.core.app.NotificationCompat;
++
++import com.arnawajuan.tubes_uts.MainActivity;
++import com.arnawajuan.tubes_uts.R;
++import com.arnawajuan.tubes_uts.RegisterUser;
++import com.arnawajuan.tubes_uts.UserLogin;
++import com.google.android.gms.tasks.OnCompleteListener;
++import com.google.android.gms.tasks.Task;
++import com.google.android.material.textfield.TextInputEditText;
++import com.google.android.material.textfield.TextInputLayout;
++import com.google.firebase.auth.AuthResult;
++import com.google.firebase.auth.FirebaseAuth;
++
++public class UserRegister extends AppCompatActivity implements RegisterView {
++    Button registerBtn;
++    TextView btnSignIn;
++    TextInputLayout inputLayoutName,inputLayoutEmail,inputLayoutPhone, inputLayoutPassword;
++    TextInputEditText inputName,inputEmail,inputPhone, inputPassword;
++    RegisterPresenter presenter;
++
++    @Override
++    public void onBackPressed() {
++        finish();
++    }
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_register_user);
++
++        getWindow().setEnterTransition(null);
++        getWindow().setExitTransition(null);
++
++        registerBtn = findViewById(R.id.register);
++        btnSignIn = findViewById(R.id.signIn);
++        inputLayoutName = findViewById(R.id.inputLayoutName);
++        inputLayoutEmail = findViewById(R.id.inputLayoutEmail);
++        inputLayoutPhone = findViewById(R.id.inputLayoutPhone);
++        inputLayoutPassword = findViewById(R.id.inputLayoutPassword);
++        inputName = findViewById(R.id.inputName);
++        inputEmail = findViewById(R.id.inputEmail);
++        inputPhone = findViewById(R.id.inputNumber);
++        inputPassword = findViewById(R.id.inputPassword);
++
++        presenter = new RegisterPresenter(this, new RegisterService());
++        btnSignIn.setOnClickListener(new View.OnClickListener() {
++
++
++            @Override
++            public void onClick(View view) {
++                presenter.onRegisterClicked();
++            }
++        });
++        registerBtn.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                    Intent intent = new Intent(UserRegister.this, UserLogin.class);
++                Pair[] pairs = new Pair[4];
++                pairs[0] = new Pair<View, String>(registerBtn, "main_button");
++                pairs[1] = new Pair<View, String>(btnSignIn, "sub_button");
++                pairs[2] = new Pair<View, String>(inputLayoutName, "name");
++                pairs[3] = new Pair<View, String>(inputLayoutEmail, "email");
++                pairs[4] = new Pair<View, String>(inputLayoutPhone, "phone");
++                pairs[5] = new Pair<View, String>(inputLayoutPassword, "password");
++
++                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(UserRegister.this, pairs);
++                startActivity(intent, options.toBundle());
++
++                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
++                    @Override
++                    public void run() {
++                        finish();
++                    }
++                }, 1000);
++            }
++        });
++        }
++    @Override
++    public String getName() {
++        return inputName.getText().toString();
++    }
++
++    @Override
++    public void showNameError(String message) {
++        inputLayoutName.setError(message);
++    }
++    @Override
++    public String getEmail() {
++        return inputName.getText().toString();
++    }
++
++    @Override
++    public void showEmailError(String message) {
++        inputLayoutEmail.setError(message);
++    }
++
++    @Override
++    public String getPhone() {
++        return inputPhone.getText().toString();
++    }
++
++    @Override
++    public void showPhoneError(String message) {
++        inputLayoutPhone.setError(message);
++    }
++
++    @Override
++    public String getPassword() {
++        return inputPassword.getText().toString();
++    }
++
++    @Override
++    public void showPasswordError(String message) {
++        inputLayoutPassword.setError(message);
++    }
++
++    @Override
++    public void startMainActivity() {
++        new ActivityUtil(this).startMainActivity();
++    }
++
++    @Override
++    public void showRegisterError(String message) {
++        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
++    }
++
++    @Override
++    public void showRegisterMessage(String message) {
++        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
++    }
++
++    }
+Index: app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterCallback.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterCallback.java	(date 1607303125382)
++++ app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterCallback.java	(date 1607303125382)
+@@ -0,0 +1,7 @@
++package com.arnawajuan.tubes_uts.UnitTest;
++
++public interface RegisterCallback {
++    void onSuccess(boolean value);
++
++    void onError();
++}
+Index: app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterView.java	(date 1607303125404)
++++ app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/RegisterView.java	(date 1607303125404)
+@@ -0,0 +1,26 @@
++package com.arnawajuan.tubes_uts.UnitTest;
++
++public interface RegisterView {
++
++    String getName();
++
++    void showNameError(String message);
++
++    String getEmail();
++
++    void showEmailError(String message);
++
++    String getPhone();
++
++    void showPhoneError(String message);
++
++    String getPassword();
++
++    void showPasswordError(String message);
++
++    void startMainActivity();
++
++    void showRegisterError(String message);
++
++    void showRegisterMessage(String message);
++}
+Index: app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/ActivityUtil.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/ActivityUtil.java	(date 1607303125345)
++++ app/src/main/java/com/arnawajuan/tubes_uts/UnitTest/ActivityUtil.java	(date 1607303125345)
+@@ -0,0 +1,18 @@
++package com.arnawajuan.tubes_uts.UnitTest;
++
++import android.content.Context;
++import android.content.Intent;
++
++import com.arnawajuan.tubes_uts.MainActivity;
++
++public class ActivityUtil {
++    private Context context;
++
++    public ActivityUtil(Context context) {
++        this.context = context;
++    }
++
++    public void startMainActivity() {
++        context.startActivity(new Intent(context, MainActivity.class));
++    }
++}
+\ No newline at end of file
