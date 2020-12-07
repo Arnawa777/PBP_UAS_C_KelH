@@ -47,6 +47,7 @@ public interface ApiInterface {
         @FormUrlEncoded
         Call<FoodResponse> addFood (@Field("food_name") String food_name,
                                     @Field("price") double price,
+                                    @Field("desc") String desc,
                                     @Field("image_food") String image_food);
 
         @PUT("food/{id}")

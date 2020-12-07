@@ -1,6 +1,8 @@
 package com.arnawajuan.rumah_makan_cilik.makanan;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,7 @@ import com.arnawajuan.rumah_makan_cilik.R;
 import com.arnawajuan.rumah_makan_cilik.SharePref;
 import com.arnawajuan.rumah_makan_cilik.api.ApiClient;
 import com.arnawajuan.rumah_makan_cilik.api.ApiInterface;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -31,6 +34,7 @@ public class MenuMakanan extends AppCompatActivity {
     private RecyclerViewAdapter recyclerAdapter;
     private SharePref sharePref;
     private ImageView backButton;
+    private FloatingActionButton btnAdd;
     private SwipeRefreshLayout swipeRefresh;
 
     @Override
@@ -47,21 +51,29 @@ public class MenuMakanan extends AppCompatActivity {
         swipeRefresh = findViewById(R.id.swipeRefresh);
 
         swipeRefresh.setRefreshing(false);
-        loadUser();
+        loadFood();
 
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loadUser();
+                loadFood();
             }
         });
 
-
+        btnAdd = findViewById(R.id.btnA_food);
         backButton = findViewById(R.id.back_button_menu);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MenuMakanan.this, MainActivity.class));
+            }
+        });
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.mainContainer,new AddMakanan()).commit();
             }
         });
 
@@ -71,11 +83,11 @@ public class MenuMakanan extends AppCompatActivity {
     public void onResume()
     {
         swipeRefresh.setRefreshing(true);
-        loadUser();
+        loadFood();
         super.onResume();
     }
 
-    public void loadUser(){
+    public void loadFood(){
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<FoodResponse> call = apiService.getAllFood();
 
