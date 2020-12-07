@@ -141,14 +141,16 @@ public class UserLogin extends AppCompatActivity {
                     }
                     else
                     {
-                        Intent i = new Intent(UserLogin.this, MainActivity.class);
-                        Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_LONG).show();
                         mLoadingBar.dismiss();
                     }
                 }
                 @Override
                 public void onFailure(Call<UserResponse> call, Throwable t) {
-                    //failure
+                    Intent i = new Intent(UserLogin.this, UserLogin.class);
+                    startActivity(i);
+                    Toast.makeText(UserLogin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    mLoadingBar.dismiss();
                 }
             });
         }
