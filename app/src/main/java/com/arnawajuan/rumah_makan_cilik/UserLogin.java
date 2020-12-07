@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -144,13 +145,13 @@ public class UserLogin extends AppCompatActivity {
                     else
                     {
                         Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                        mLoadingBar.dismiss();
                     }
                 }
                 @Override
                 public void onFailure(Call<UserResponse> call, Throwable t) {
-                    Toast.makeText(UserLogin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserLogin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
                     mLoadingBar.dismiss();
+                    Log.i("banana",t.getMessage());
                 }
             });
         }

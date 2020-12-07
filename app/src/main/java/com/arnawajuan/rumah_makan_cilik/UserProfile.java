@@ -73,7 +73,9 @@ public class UserProfile extends AppCompatActivity {
             phone= (String) savedInstanceState.getSerializable("phone_number");
         }
 
-
+        inputEmail.setText(email);
+        inputName.setText(name);
+        inputPhone.setText(phone);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
