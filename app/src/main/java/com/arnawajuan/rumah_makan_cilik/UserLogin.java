@@ -1,4 +1,4 @@
-package com.arnawajuan.tubes_uts;
+package com.arnawajuan.rumah_makan_cilik;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -21,9 +21,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
-import com.arnawajuan.tubes_uts.api.ApiClient;
-import com.arnawajuan.tubes_uts.api.ApiInterface;
-import com.arnawajuan.tubes_uts.api.UserResponse;
+import com.arnawajuan.rumah_makan_cilik.api.ApiClient;
+import com.arnawajuan.rumah_makan_cilik.api.ApiInterface;
+import com.arnawajuan.rumah_makan_cilik.api.UserResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -141,14 +141,13 @@ public class UserLogin extends AppCompatActivity {
                     }
                     else
                     {
-                        Intent i = new Intent(UserLogin.this, MainActivity.class);
                         Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                         mLoadingBar.dismiss();
                     }
                 }
                 @Override
                 public void onFailure(Call<UserResponse> call, Throwable t) {
-                    //failure
+                    Toast.makeText(UserLogin.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
