@@ -19,8 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
-
     LinearLayout menumak, reserv, geo, setting, profile;
+
 
     private SharePref sharePref;
     LinearLayout logout;
@@ -157,7 +157,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SettingActivity.class);
         startActivity(intent);
     }
-
-
 
 }

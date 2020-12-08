@@ -22,22 +22,19 @@ public interface ApiInterface {
 
         @POST("register")
         @FormUrlEncoded
-        Call<UserResponse> register(@Field("name") String name,
-                                                             @Field("email") String email,
-                                                             @Field("phone_number") String phone_number,
-                                                             @Field("password") String password);
+        Call<UserResponse> register     (@Field("name") String name,
+                                         @Field("email") String email,
+                                         @Field("phone_number") String phone_number,
+                                         @Field("password") String password);
 
-        @POST("user/update/{id}")
-        @FormUrlEncoded
-        Call<UserResponse> updateUser(@Path("id")String id,
-                                      @Field("name") String name,
-                                                               @Field("email") String email,
-                                                               @Field("phone_number") String phone_number,
-                                                               @Field("password") String password);
-        @DELETE("user/delete/{id}")
-        Call<UserResponse> deleteUser(@Path("id")String id);
+        @GET("profile/{id}")
+        Call<UserResponse> showUser     (@Path("id")String id);
 
-
+        @PUT("update/{id}")
+        Call<UserResponse> updateUser   (@Path("id")String id,
+                                         @Field("name") String name,
+                                         @Field("email") String email,
+                                         @Field("phone_number") String phone_number);
 
 
         @GET("food")

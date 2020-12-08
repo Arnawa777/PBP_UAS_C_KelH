@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserDAO {
     @SerializedName("id")
-    private int id;
+    private String id;
 
     @SerializedName("name")
     private String name;
@@ -18,7 +18,7 @@ public class UserDAO {
     @SerializedName("password")
     private String password;
 
-    public UserDAO(int id, String name, String phone_number, String email, String password) {
+    public UserDAO(String id, String name, String phone_number, String email, String password) {
         this.id = id;
         this.name = name;
         this.phone_number = phone_number;
@@ -26,7 +26,7 @@ public class UserDAO {
         this.password = password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

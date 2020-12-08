@@ -24,6 +24,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.arnawajuan.rumah_makan_cilik.api.ApiClient;
 import com.arnawajuan.rumah_makan_cilik.api.ApiInterface;
+import com.arnawajuan.rumah_makan_cilik.api.UserDAO;
 import com.arnawajuan.rumah_makan_cilik.api.UserResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,8 +38,12 @@ import retrofit2.Response;
 
 public class UserLogin extends AppCompatActivity {
     private String CHANNEL_ID = "Channel 1";
+    private static final String USER_SHARED_NAME = "User";
 
+    SharedPreferences userShared;
     TextView btnSignUp;
+    String  name, phone;
+    String sId ;
 
     private TextInputEditText inputEmail, inputPass;
     Button loginBtn;
@@ -127,18 +132,40 @@ public class UserLogin extends AppCompatActivity {
                 public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                     if(response.body().getMessage().equalsIgnoreCase("Authenticated" )){
                             mLoadingBar.dismiss();
-//                            UserDAO user = response.body().getUsers().get(0);
+//                            ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+//                            Call<UserResponse> getUser = apiService.showUser(id);
+//                            getUser.enqueue(new Callback<UserResponse>() {
+//                                @Override
+//                                public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+//                                    UserDAO user = response.body().getUsers().get(0);
+//
+//                                    i.putExtra("id",user.getId());
+//                                    i.putExtra("name",user.getName());
+//                                    i.putExtra("email",user.getEmail());
+//                                    i.putExtra("phone",user.getPhone_number());
+//
+//
+//                                }
+//
+//                                @Override
+//                                public void onFailure(Call<UserResponse> call, Throwable t) {
+//                                    Toast.makeText(UserLogin.this, "Invalid Credentials", Toast.LENGTH_SHORT).show();
+//                                    mLoadingBar.dismiss();
+//                                    Log.i("banana",t.getMessage());
+//                                }
+//                            });
+
+                            sId = response.body().getUser().getId();
                             Intent i = new Intent(UserLogin.this, MainActivity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             createNotificationChannel();
                             addNotification();
-//                            i.putExtra("id",user.getId());
-//                            i.putExtra("name",user.getName());
-//                            i.putExtra("nim",user.getEmail());
-//                            i.putExtra("prodi",user.getPhone_number());
                             startActivity(i);
                             finish();
                             Toast.makeText(UserLogin.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+
+
+
                     }
                     else
                     {
@@ -190,6 +217,18 @@ public class UserLogin extends AppCompatActivity {
 
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(0, builder.build());
+    }
+
+    private void savePreferences() {
+        userShared = getSharedPreferences(USER_SHARED_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = userShared.edit();
+        editor.putString("id", sId);
+        editor.apply();
+    }
+
+    private void loadPreferences() {
+        userShared = getSharedPreferences(USER_SHARED_NAME, MODE_PRIVATE);
+        sId = userShared.getString("id", "");
     }
 }
 
